@@ -9,13 +9,13 @@ pool:
   #vmImage: 'windows-latest'
 
 variables:
-  location: 'westus3'
-  resourceGroupName: 'rg-iac-web-iis'
-  vmName: 'vm-iac-web-iis'
-  templateFile: 'vm-iis-template.json'
-  parametersFile: 'vm-iis-parameters.json'
-  indexUrl: 'https://raw.githubusercontent.com/profll001/IAAS/refs/heads/main/src/index.html'
-  scriptUrl: 'https://raw.githubusercontent.com/profll001/IAAS/refs/heads/main/src/scripts/site.ps1'
+  location: 'centralindia'
+  resourceGroupName: 'ResourcesGroup-01'
+  vmName: 'VirtualMachine-web-01'
+  templateFile: 'vm-iis-template.json' #arm-templates/vm-iis-template.json (Sugestão GPT) 
+  parametersFile: 'vm-iis-parameters.json' #arm-templates/vm-iis-parameters.json (Sugestão GPT)
+  indexUrl: 'https://raw.githubusercontent.com/marcus1670509/IAAS/refs/heads/main/src/index.html'
+  scriptUrl: 'https://raw.githubusercontent.com/marcus1670509/IAAS/refs/heads/main/src/scripts/site.ps1'
 
 stages:
 - stage: DeployInfra
@@ -42,8 +42,8 @@ stages:
         resourceGroupName: '$(resourceGroupName)'
         location: '$(location)'
         templateLocation: 'Linked artifact'
-        csmFile: 'arm-templates/vm-iis-template.json'
-        csmParametersFile: 'arm-templates/vm-iis-parameters.json'
+        csmFile: 'arm-templates/vm-iis-template.json' #"$(templateFile)" (Sugestão GPT)
+        csmParametersFile: 'arm-templates/vm-iis-parameters.json' #"$(parametersFile)" (Sugestão GPT) 
         deploymentMode: 'Incremental'
         deploymentName: 'vm-iis-deployment'
 
